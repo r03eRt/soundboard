@@ -13,9 +13,20 @@ app.run(function ($ionicPlatform) {
 	});
 });
 
-app.controller('SoundBoardCtrl', function ($scope) {
+app.controller('SoundBoardCtrl', ['$scope','$window',function ($scope,$window) {
 
 	$scope.media = null;
+
+
+  $scope.deleteSound = function($index){
+    $scope.model.sounds.splice($index, 1);
+  };
+
+  $scope.moveSound = function(sound,fromIndex,toIndex){
+    $scope.model.sounds.splice(fromIndex,1);
+    $scope.model.sounds.splice(toIndex,0,sound);
+
+  };
 
 	$scope.model = {
 		showDelete: false,
@@ -90,5 +101,5 @@ app.controller('SoundBoardCtrl', function ($scope) {
 
 
 	};
-});
+}]);
 
